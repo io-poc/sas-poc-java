@@ -34,7 +34,7 @@ pipeline {
                            workflowVersion: '2021.12.4'),
                         codeDx(configName: 'poc-codedx',
                                projectId: '2'),
-                        buildBreaker(configName: 'BuildBreaker')]) {
+                        buildBreaker(configName: 'poc-bb')]) {
                     sh 'io --version'
                     sh 'io --stage io --verbose'
                     }
