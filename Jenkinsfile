@@ -83,7 +83,8 @@ pipeline {
         stage('IO - Workflow') {
             steps {
                 echo 'Execute Workflow Stage'
-                synopsysIO(connectors: []) {
+                synopsysIO(connectors: [
+                    msteams(configName: 'io-bot'), ]) {
                     sh 'io --stage workflow --state io_state.json'
                 }
             }
