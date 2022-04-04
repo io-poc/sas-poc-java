@@ -38,6 +38,7 @@ pipeline {
                                repositoryName: 'sas-poc-java'),
                         codeDx(configName: 'poc-codedx',
                                projectId: '2'),
+                        msteams(configName: 'io-bot'), 
                         buildBreaker(configName: 'poc-bb')]) {
                     sh 'io --version'
                     sh 'io --stage io --verbose'
