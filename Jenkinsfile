@@ -32,6 +32,10 @@ pipeline {
                         io(configName: 'io-poc',
                            projectName: 'sas-poc-java',
                            workflowVersion: '2021.12.4'),
+                        github(branch: 'master',
+                               configName: 'poc-github',
+                               owner: 'io-poc',
+                               repositoryName: 'sas-poc-java'),
                         codeDx(configName: 'poc-codedx',
                                projectId: '2'),
                         buildBreaker(configName: 'poc-bb')]) {
