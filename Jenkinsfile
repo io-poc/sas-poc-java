@@ -38,7 +38,6 @@ pipeline {
                                repositoryName: 'sas-poc-java'),
                         codeDx(configName: 'poc-codedx',
                                projectId: '2'),
-                        msteams(configName: 'io-bot'), 
                         buildBreaker(configName: 'poc-bb')]) {
                     sh 'io --version'
                     sh 'io --stage io --verbose'
@@ -62,7 +61,13 @@ pipeline {
                 expression { isSASTEnabled }
             }
             steps {
-                echo 'Polaris - Placeholder - TODO'
+                echo 'Running SAST using Polaris'
+                synopsysIO(connectors: [
+                    [$class: 'PolarisPipelineConfig',
+                    configName: 'poc-polaris',
+                    projectName: 'sas-poc-java']]) {
+                    sh 'io --stage execution --state io_state.json'
+                }
             }
         }
 
