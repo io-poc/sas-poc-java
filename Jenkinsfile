@@ -98,7 +98,6 @@ pipeline {
         stage('Security Sign-Off') {
             steps {
                 script {
-                    sh 'curl -H \'Content-Type: application/json\' -d \'{"text": "SAS Connection Test"}\' "https://synopsyssig.webhook.office.com/webhookb2/75838a49-a60e-4dec-ad9e-4d608b2a531c@99f3f5c1-a294-451e-9e1e-b3bbc8d9e4ba/IncomingWebhook/60cbe4414dff4421a4ad567c51564ca8/5082f172-98a3-4c83-afb5-9215b77f3502"'
                     if (fileExists('wf-output.json')) {
                         def workflowJSON = readJSON file: 'wf-output.json'
                         buildBreakerStatus = workflowJSON.breaker.status
