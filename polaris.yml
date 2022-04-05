@@ -1,0 +1,17 @@
+version: "1"
+install:
+  coverity:
+    version: latest
+project:
+  name: "sas-poc-java"
+  branch: "origin/devsecops"
+  revision:
+    name: "sas-poc-java"
+    date: "2020-10-01T14:25:30Z"
+  captureDir: .synopsys/polaris
+capture:
+  coverity:
+    buildless:
+      project:
+        languages:
+          - "java"
