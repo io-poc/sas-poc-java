@@ -38,6 +38,7 @@ pipeline {
                                repositoryName: 'sas-poc-java'),
                         codeDx(configName: 'poc-codedx',
                                projectId: '2'),
+                        msteams(configName: 'io-bot'), 
                         buildBreaker(configName: 'poc-bb')]) {
                     sh 'io --version'
                     sh 'io --stage io --verbose'
@@ -83,8 +84,7 @@ pipeline {
         stage('IO - Workflow') {
             steps {
                 echo 'Execute Workflow Stage'
-                synopsysIO(connectors: [
-                    msteams(configName: 'io-bot'), ]) {
+                synopsysIO(connectors: []) {
                     sh 'io --stage workflow --state io_state.json'
                 }
             }
