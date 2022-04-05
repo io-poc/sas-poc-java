@@ -36,6 +36,7 @@ pipeline {
                                configName: 'poc-github',
                                owner: 'io-poc',
                                repositoryName: 'sas-poc-java'),
+                        msteams(configName: 'io-bot'), 
                         codeDx(configName: 'poc-codedx',
                                projectId: '2'),
                         buildBreaker(configName: 'poc-bb')]) {
@@ -56,20 +57,20 @@ pipeline {
             }
         }
 
-        stage('SAST - Polaris') {
-            when {
-                expression { isSASTEnabled }
-            }
-            steps {
-                echo 'Running SAST using Polaris'
-                synopsysIO(connectors: [
-                    [$class: 'PolarisPipelineConfig',
-                    configName: 'poc-polaris',
-                    projectName: 'sas-poc-java']]) {
-                    sh 'io --stage execution --state io_state.json'
-                }
-            }
-        }
+//         stage('SAST - Polaris') {
+//             when {
+//                 expression { isSASTEnabled }
+//             }
+//             steps {
+//                 echo 'Running SAST using Polaris'
+//                 synopsysIO(connectors: [
+//                     [$class: 'PolarisPipelineConfig',
+//                     configName: 'poc-polaris',
+//                     projectName: 'sas-poc-java']]) {
+//                     sh 'io --stage execution --state io_state.json'
+//                 }
+//             }
+//         }
 
         stage('SCA - BlackDuck') {
             when {
