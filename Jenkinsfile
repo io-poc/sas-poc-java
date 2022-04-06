@@ -62,12 +62,12 @@ pipeline {
             }
             steps {
                 echo 'Running SAST using Polaris'
-                synopsysIO(connectors: [
-                    [$class: 'PolarisPipelineConfig',
-                    configName: 'poc-polaris',
-                    projectName: 'sas-poc-java']]) {
-                    sh 'io --stage execution --state io_state.json'
-                }
+//                 synopsysIO(connectors: [
+//                     [$class: 'PolarisPipelineConfig',
+//                     configName: 'poc-polaris',
+//                     projectName: 'sas-poc-java']]) {
+//                     sh 'io --stage execution --state io_state.json'
+//                 }
             }
         }
 
@@ -138,10 +138,10 @@ pipeline {
         }
     }
 
-    // post {
-    //     always {
-    //         // Always remove the state JSON file as it has sensitive information
-    //         sh 'rm io_state.json'
-    //     }
-    // }
+    post {
+        always {
+            // Always remove the state JSON file as it has sensitive information
+            sh 'rm io_state.json'
+        }
+    }
 }
